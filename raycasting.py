@@ -54,8 +54,9 @@ class RayCasting:
                 depth = depth_hor
 
             ray_angle += delta_angle
-            pygame.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy),
-                             (100 * ox + (100 * depth * cos_a), 100 * oy + (100 * depth * sin_a)), 2)
+            proj_height = screen_dist / (depth + 0.00001)
 
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pygame.draw.rect(self.game.screen , color, (ray * scale, Moitié_longueur - proj_height // 2, scale, proj_height))
     def update(self):
         self.ray_cast()

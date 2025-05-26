@@ -1,6 +1,9 @@
 import math
 
 Resolution = Largeur, Longueur = 1600, 900
+Moitié_largeur = Largeur //2
+Moitié_longueur = Longueur //2
+
 FPS = 60
 
 player_pos = 1.5, 5
@@ -14,3 +17,6 @@ nb_ray = Largeur//2
 Moitie_nb_rays = nb_ray//2
 delta_angle = FOV / nb_ray
 Max_depth = 20
+
+screen_dist = Moitié_largeur /math.tan(Moitie_FOV)
+scale = Largeur // nb_ray
