@@ -20,3 +20,6 @@ Max_depth = 20
 
 screen_dist = Moitié_largeur /math.tan(Moitie_FOV)
 scale = Largeur // nb_ray
+
+Texture_size = 256
+Moitie_texture_size = Texture_size//2

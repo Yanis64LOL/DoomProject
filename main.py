@@ -5,6 +5,7 @@ from player import Player
 from raycasting import *
 from setting import *
 from map import *
+from object_renderer import *
 
 class Game():
     def __init__(self):
@@ -17,6 +18,7 @@ class Game():
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
 
     def update(self):
@@ -31,6 +33,7 @@ class Game():
         self.screen.fill('black')
         #self.map.draw()
         #self.player.draw()
+        self.object_renderer.draw()
 
     def check_events(self):
         for event in pygame.event.get():
