@@ -10,6 +10,7 @@ from object_renderer import *
 class Game():
     def __init__(self):
         pygame.init()
+        pygame.mouse.set_visible(False)
         self.screen = pygame.display.set_mode(Resolution)
         self.clock = pygame.time.Clock()
         self.delta_time = 1
