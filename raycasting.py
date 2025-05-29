@@ -14,11 +14,20 @@ class RayCasting:
         for ray, values in enumerate(self.ray_casting_result):
             depth, proj_height, texture, offset = values
 
-            wall_column = self.textures[texture].subsurface(
-                offset * (Texture_size - scale), 0, scale, Texture_size
-            )
-            wall_column = pygame.transform.scale(wall_column, (scale, proj_height))
-            wall_pos = (ray * scale, Moitié_longueur - proj_height//2)
+            if proj_height < Longueur:
+                wall_column = self.textures[texture].subsurface(
+                    offset * (Texture_size - scale), 0, scale, Texture_size
+                )
+                wall_column = pygame.transform.scale(wall_column, (scale, proj_height))
+                wall_pos = (ray * scale, Moitié_longueur - proj_height//2)
+            else:
+                texture_height = Texture_size * Longueur / proj_height
+                wall_column = self.textures[texture].subsurface(
+                    offset * (Texture_size - scale), Moitie_texture_size - texture_height // 2,
+                    scale, texture_height
+                )
+                wall_column = pygame.transform.scale(wall_column, (scale, Longueur))
+                wall_pos = (ray * scale, 0)
 
             self.objects_to_render.append((depth, wall_column, wall_pos))
     def ray_cast(self):
