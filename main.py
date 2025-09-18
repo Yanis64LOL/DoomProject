@@ -8,6 +8,8 @@ from map import *
 from object_renderer import *
 from sprite_object import *
 from Gestionnaire_objet import *
+from weapon import *
+from Sound import *
 
 class Game():
     def __init__(self):
@@ -23,14 +25,15 @@ class Game():
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
-        self.static_sprite = SpriteObject(self)
-        self.animated_sprite = AnimatedSprite(self)
         self.object_handler = ObjectHandler(self)
+        self.weapon = Weapon(self)
+        self.sound = Sound(self)
 
     def update(self):
         self.player.update()
         self.raycasting.update()
         self.object_handler.update()
+        self.weapon.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f'{self.clock.get_fps() : .1f}')
@@ -38,15 +41,17 @@ class Game():
     def draw(self):
 
         self.screen.fill('black')
-        #self.map.draw()
-        #self.player.draw()
+        self.map.draw()
+        self.player.draw()
         self.object_renderer.draw()
+        self.weapon.draw()
 
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
                 sys.exit()
+            self.player.single_fire_event(event)
 
     def run(self):
         while True:
