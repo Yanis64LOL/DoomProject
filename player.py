@@ -41,10 +41,10 @@ class Player:
 
         self.check_wall_collision(dx, dy)
 
-        #if keys[pygame.K_LEFT]:
-            #self.angle -= player_rotation_speed * self.game.delta_time
-        #if keys[pygame.K_RIGHT]:
-            #self.angle += player_rotation_speed * self.game.delta_time
+        if keys[pygame.K_LEFT]:
+            self.angle -= player_rotation_speed * self.game.delta_time
+        if keys[pygame.K_RIGHT]:
+            self.angle += player_rotation_speed * self.game.delta_time
         self.angle %= math.tau
 
     def check_wall(self, x, y):
@@ -56,6 +56,7 @@ class Player:
             self.x += dx
         if self.check_wall(int(self.x), int(self.y + dy*scale)):
             self.y += dy
+
     def draw(self):
         pygame.draw.line(self.game.screen, 'yellow', (self.x * 100, self.y * 100),
                          (self.x * 100 + Largeur * math.cos(self.angle),

@@ -32,6 +32,7 @@ class RayCasting:
             self.objects_to_render.append((depth, wall_column, wall_pos))
     def ray_cast(self):
         self.ray_casting_result = []
+        texture_vert, texture_hor = 1, 1
         ox, oy = self.game.player.pos
         x_map, y_map = self.game.player.map_pos
         ray_angle = self.game.player.angle - Moitie_FOV + 0.0001
@@ -39,7 +40,6 @@ class RayCasting:
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
 
-            texture_vert, texture_hor = 1, 1
 
             # horizontals
             y_hor, dy = (y_map + 1, 1) if sin_a > 0 else (y_map - 1e-6, -1)
@@ -90,6 +90,9 @@ class RayCasting:
 
             ray_angle += delta_angle
             proj_height = screen_dist / (depth + 0.00001)
+
+            #pygame.draw.line(self.game.screen, "yellow", (100* ox, 100*oy),
+                             #(100 * ox + 100*depth*cos_a, 100 *oy+100 * depth* sin_a),  2)
 
             self.ray_casting_result.append((depth, proj_height, texture, offset))
 
