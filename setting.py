@@ -6,11 +6,12 @@ Moitié_longueur = Longueur //2
 
 FPS = 60
 
-player_pos = 1.5, 5
+player_pos = 1.5, 4
 player_angle = 0
 player_speed = 0.05
 player_rotation_speed = 0.002
 player_size_scale = 60
+player_max_health = 100
 
 mouse_sensitivity = 0.0003
 mouse_max_rel = 40

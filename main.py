@@ -33,6 +33,7 @@ class Game():
         self.weapon = Weapon(self)
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
+        pygame.mixer.music.play(-1)
 
     def update(self):
         self.player.update()
@@ -48,8 +49,8 @@ class Game():
         self.screen.fill('black')
 
         self.object_renderer.draw()
-        #self.map.draw()
-        #self.player.draw()
+        self.map.draw()
+        self.player.draw()
         self.weapon.draw()
 
     def check_events(self):
