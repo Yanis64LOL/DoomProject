@@ -16,6 +16,7 @@ class Player:
             pygame.display.flip()
             pygame.time.delay(1500)
             self.game.new_game()
+            self.game.run()
 
     def get_damage(self, damage):
         self.health -= damage

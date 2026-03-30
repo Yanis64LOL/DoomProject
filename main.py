@@ -11,6 +11,7 @@ from Gestionnaire_objet import *
 from weapon import *
 from Sound import *
 from pathfinding import *
+from menu import *
 
 class Game():
     def __init__(self):
@@ -22,7 +23,7 @@ class Game():
         self.global_trigger = False
         self.global_event = pygame.USEREVENT + 0
         pygame.time.set_timer(self.global_event, 40)
-        self.new_game()
+        self.state = "menu"
 
     def new_game(self):
         self.map = Map(self)
@@ -63,6 +64,11 @@ class Game():
                 self.global_trigger = True
             self.player.single_fire_event(event)
 
+    def menu(self):
+        menu = Menu(self)
+        menu.run()
+
+
     def run(self):
         while True:
             self.check_events()
@@ -71,4 +77,4 @@ class Game():
 
 if __name__ == '__main__':
     game = Game()
-    game.run()
+    game.menu()
