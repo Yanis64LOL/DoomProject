@@ -8,7 +8,7 @@ class NPC(AnimatedSprite):
                  shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_images = self.get_images((self.path + '/Attack'))
-        self.death_images = self.get_images((self.path + '/death'))
+        self.death_images = self.get_images((self.path + '/Death'))
         self.idle_images = self.get_images((self.path + '/Idle'))
         self.pain_images = self.get_images((self.path + '/Pain'))
         self.walk_images = self.get_images((self.path + '/Walk'))
