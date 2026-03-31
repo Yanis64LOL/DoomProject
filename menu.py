@@ -11,6 +11,7 @@ class Menu():
         self.logo = pygame.image.load("Menu/Doom_Logo.png").convert_alpha()
         self.rect = self.logo.get_rect(center=(Moitié_largeur, Moitié_longueur - 250))
         self.button_play = Button_Play()
+        self.button_option = Button_Option()
 
 
     def run(self):
@@ -54,4 +55,8 @@ class Button:
 
 class Button_Play(Button):
     def __init__(self, path="Menu/Play Rect.png", pos=(Moitié_largeur, Moitié_longueur+75)):
+        super().__init__(path, pos)
+
+class Button_Option(Button):
+    def __init__(self, path="Menu/Play Rect.png", pos=(Moitié_largeur, Moitié_longueur+175)):
         super().__init__(path, pos)
