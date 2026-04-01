@@ -9,6 +9,8 @@ class Player:
         self.angle = player_angle
         self.shot = False
         self.health = player_max_health
+        self.joystick = pygame.joystick.Joystick(0)
+        self.joystick.init()
 
     def check_game_over(self):
         if self.health < 1:
@@ -41,16 +43,16 @@ class Player:
         speed_cos = speed * cos_a
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_z]:
+        if keys[pygame.K_z] or self.joystick.get_axis(1) < -0.5:
             dx += speed_cos
             dy += speed_sin
-        if keys[pygame.K_s]:
+        if keys[pygame.K_s] or self.joystick.get_axis(1) > 0.5:
             dx += -speed_cos
             dy += -speed_sin
-        if keys[pygame.K_q]:
+        if keys[pygame.K_q] or self.joystick.get_axis(0) < -0.5:
             dx += speed_sin
             dy += -speed_cos
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d] or self.joystick.get_axis(0) > 0.5:
             dx += -speed_sin
             dy += speed_cos
 
