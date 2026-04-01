@@ -31,7 +31,7 @@ class ObjectHandler:
         #add_sprite(AnimatedSprite(game, path=self.anim_sprite_path + 'red_light/0.png', pos=(12.5, 7.5)))
         #add_sprite(AnimatedSprite(game, path=self.anim_sprite_path + 'red_light/0.png', pos=(9.5, 7.5)))
 
-        #add_npc(SoldierNPC(game))
+        add_npc(SoldierNPC(game))
         #add_npc(Boss(game, pos=(11.5, 4.5)))
 
     def update(self):

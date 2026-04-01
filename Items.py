@@ -4,11 +4,9 @@ from sprite_object import *
 
 class Items(SpriteObject):
 
-    def __init__(self, game, path="Sprites/Item_heal/",
+    def __init__(self, game, path="Sprites/Item_heal/0.png",
                  pos=(10.5, 3.5), scale=0.3, shift=1.25):
         super().__init__(game, path, pos, scale, shift)
-
-
 
     def check_collision(self):
         return int(self.game.player.pos[0]) in range(int(self.x-2), int(self.x+2)) \
