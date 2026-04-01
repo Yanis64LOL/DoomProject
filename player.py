@@ -27,9 +27,8 @@ class Player:
         self.check_game_over()
 
     def single_fire_event(self, event):
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1 and not self.shot and not self.game.weapon.reloading:
+        if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.JOYBUTTONDOWN:
+            if (event.button == 1 or event.button == 10) and not self.shot and not self.game.weapon.reloading:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
@@ -58,9 +57,9 @@ class Player:
 
         self.check_wall_collision(dx, dy)
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT]  or self.joystick.get_axis(2) < -0.5:
             self.angle -= player_rotation_speed * self.game.delta_time
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] or self.joystick.get_axis(2) > 0.5:
             self.angle += player_rotation_speed * self.game.delta_time
         self.angle %= math.tau
 
