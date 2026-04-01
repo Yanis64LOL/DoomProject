@@ -8,7 +8,7 @@ class Player:
         self.x, self.y = player_pos
         self.angle = player_angle
         self.shot = False
-        self.health = player_max_health
+        self.health = 60
         self.joystick = pygame.joystick.Joystick(0)
         self.joystick.init()
 
