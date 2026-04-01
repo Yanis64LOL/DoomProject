@@ -8,7 +8,7 @@ class Player:
         self.x, self.y = player_pos
         self.angle = player_angle
         self.shot = False
-        self.health = 60
+        self.health = 80
         self.joystick = pygame.joystick.Joystick(0)
         self.joystick.init()
 
@@ -25,6 +25,14 @@ class Player:
         self.game.object_renderer.player_damage()
         self.game.sound.player_pain.play()
         self.check_game_over()
+
+    def get_health(self):
+        if self.health < player_max_health:
+            if player_max_health < self.health + 25:
+                self.health += (player_max_health - self.health)
+            else:
+                self.game.player.health += 25
+        self.game.object_renderer.player_heal()
 
     def single_fire_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.JOYBUTTONDOWN:

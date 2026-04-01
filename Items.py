@@ -26,16 +26,9 @@ class Items_Heal(Items):
 
     def Add_health(self):
         if self.check_collision() and not self.trigger:
-            if self.game.player.health < player_max_health:
-                if player_max_health < self.game.player.health + 25:
-                    self.game.player.health += (player_max_health - self.game.player.health)
-                    self.image = pygame.image.load("Sprites/Item_heal/1.png").convert_alpha()
-                    self.trigger = True
-                else:
-                    self.game.player.health += 25
-                    self.image = pygame.image.load("Sprites/Item_heal/1.png").convert_alpha()
-                    self.trigger = True
-
+            self.game.player.get_health()
+            self.image = pygame.image.load("Sprites/Item_heal/1.png").convert_alpha()
+            self.trigger = True
 
 
     def update(self):

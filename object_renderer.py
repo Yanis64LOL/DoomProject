@@ -9,6 +9,7 @@ class ObjectRenderer:
         self.sky_image = self.get_texture('Texture/Doom/sky.png', (Largeur, Moitié_longueur))
         self.sky_offset = 0
         self.blood_screen = self.get_texture('Texture/Doom/blood_screen.png', Resolution)
+        self.heal_screen = self.get_texture('Texture/Doom/heal_screen.png', Resolution)
         self.digit_size = 90
         self.digit_images = [self.get_texture(f'Texture/Doom/Digits/{i}.png', [self.digit_size] * 2)
                              for i in range(11)]
@@ -31,6 +32,9 @@ class ObjectRenderer:
 
     def player_damage(self):
         self.screen.blit(self.blood_screen, (0, 0))
+
+    def player_heal(self):
+        self.screen.blit(self.heal_screen, (0, 0))
 
     def draw_background(self):
         self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
