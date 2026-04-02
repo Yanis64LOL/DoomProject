@@ -46,7 +46,7 @@ class Player:
 
     def single_fire_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.JOYBUTTONDOWN:
-            if (event.button == 1 or event.button == 5) and not self.shot and not self.game.weapon.reloading:
+            if (event.button == 1 or event.button == 10 or event.button == 5) and not self.shot and not self.game.weapon.reloading:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
@@ -68,7 +68,7 @@ class Player:
         if self.joystick:
             axis_left_joystick_x = self.joystick.get_axis(0)
             axis_left_joystick_y = self.joystick.get_axis(1)
-            axis_right_joystick_x = self.joystick.get_axis(3)
+            axis_right_joystick_x = self.joystick.get_axis(2)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_z] or axis_left_joystick_y < -0.5:

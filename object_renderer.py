@@ -7,6 +7,7 @@ class ObjectRenderer:
         self.screen = game.screen
         self.wall_textures = self.load_wall_textures()
         self.sky_image = self.get_texture('Texture/Doom/sky.png', (Largeur, Moitié_longueur))
+        self.roof_image = self.get_texture('Texture/Backrooms/roof.png', (Largeur, Moitié_longueur))
         self.sky_offset = 0
         self.blood_screen = self.get_texture('Texture/Doom/blood_screen.png', Resolution)
         self.heal_screen = self.get_texture('Texture/Doom/heal_screen.png', Resolution)
@@ -37,9 +38,15 @@ class ObjectRenderer:
         self.screen.blit(self.heal_screen, (0, 0))
 
     def draw_background(self):
-        self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
-        self.screen.blit(self.sky_image, (-self.sky_offset, 0))
-        self.screen.blit(self.sky_image, (-self.sky_offset + Largeur, 0))
+        if self.game.player.map_pos[0] > 6:
+            self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
+            self.screen.blit(self.roof_image, (-self.sky_offset, 0))
+            self.screen.blit(self.roof_image, (-self.sky_offset + Largeur, 0))
+        else:
+            self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
+            self.screen.blit(self.sky_image, (-self.sky_offset, 0))
+            self.screen.blit(self.sky_image, (-self.sky_offset + Largeur, 0))
+
 
         pygame.draw.rect(self.screen, floor_color, (0, Moitié_longueur, Largeur, Longueur))
     def render_game_objects(self):
@@ -59,4 +66,5 @@ class ObjectRenderer:
             3: self.get_texture('Texture/Doom/3.png'),
             4: self.get_texture('Texture/Doom/4.png'),
             5: self.get_texture('Texture/Doom/5.png'),
+            6: self.get_texture('Texture/Backrooms/1.jpg')
         }
