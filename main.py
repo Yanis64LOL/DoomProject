@@ -51,8 +51,8 @@ class Game():
         self.screen.fill('black')
 
         self.object_renderer.draw()
-        self.map.draw()
-        self.player.draw()
+        #self.map.draw()
+        #self.player.draw()
         self.weapon.draw()
 
     def check_events(self):
@@ -61,7 +61,6 @@ class Game():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
                 sys.exit()
-                print(event.button)
             elif event.type == self.global_event:
                 self.global_trigger = True
             self.player.single_fire_event(event)

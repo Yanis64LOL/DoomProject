@@ -9,8 +9,18 @@ class Player:
         self.angle = player_angle
         self.shot = False
         self.health = 100
-        self.joystick = pygame.joystick.Joystick(0)
-        self.joystick.init()
+        self.joystick = None
+        self.check_controller()
+
+    def check_controller(self):
+        count = pygame.joystick.get_count()
+        if count > 0 and self.joystick is None:
+            self.joystick = pygame.joystick.Joystick(0)
+            self.joystick.init()
+            print("joystick initialized")
+        elif count == 0 and self.joystick is not None:
+            self.joystick = None
+            print("joystick not initialized")
 
     def check_game_over(self):
         if self.health < 1:
@@ -36,7 +46,7 @@ class Player:
 
     def single_fire_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.JOYBUTTONDOWN:
-            if (event.button == 1 or event.button == 10) and not self.shot and not self.game.weapon.reloading:
+            if (event.button == 1 or event.button == 5) and not self.shot and not self.game.weapon.reloading:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
@@ -49,25 +59,36 @@ class Player:
         speed_sin = speed * sin_a
         speed_cos = speed * cos_a
 
+        pygame.event.pump()
+
+        axis_left_joystick_x = 0
+        axis_left_joystick_y = 0
+        axis_right_joystick_x = 0
+
+        if self.joystick:
+            axis_left_joystick_x = self.joystick.get_axis(0)
+            axis_left_joystick_y = self.joystick.get_axis(1)
+            axis_right_joystick_x = self.joystick.get_axis(3)
+
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_z] or self.joystick.get_axis(1) < -0.5:
+        if keys[pygame.K_z] or axis_left_joystick_y < -0.5:
             dx += speed_cos
             dy += speed_sin
-        if keys[pygame.K_s] or self.joystick.get_axis(1) > 0.5:
+        if keys[pygame.K_s] or axis_left_joystick_y > 0.5:
             dx += -speed_cos
             dy += -speed_sin
-        if keys[pygame.K_q] or self.joystick.get_axis(0) < -0.5:
+        if keys[pygame.K_q] or axis_left_joystick_x < -0.5:
             dx += speed_sin
             dy += -speed_cos
-        if keys[pygame.K_d] or self.joystick.get_axis(0) > 0.5:
+        if keys[pygame.K_d] or axis_left_joystick_x > 0.5:
             dx += -speed_sin
             dy += speed_cos
 
         self.check_wall_collision(dx, dy)
 
-        if keys[pygame.K_LEFT]  or self.joystick.get_axis(2) < -0.5:
+        if keys[pygame.K_LEFT]  or axis_right_joystick_x < -0.5:
             self.angle -= player_rotation_speed * self.game.delta_time
-        if keys[pygame.K_RIGHT] or self.joystick.get_axis(2) > 0.5:
+        if keys[pygame.K_RIGHT] or axis_right_joystick_x > 0.5:
             self.angle += player_rotation_speed * self.game.delta_time
         self.angle %= math.tau
 
@@ -96,6 +117,7 @@ class Player:
         self.angle += self.rel * mouse_sensitivity * self.game.delta_time
 
     def update(self):
+        self.check_controller()
         self.move()
         self.mouse_control()
 
