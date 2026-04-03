@@ -38,17 +38,21 @@ class ObjectRenderer:
         self.screen.blit(self.heal_screen, (0, 0))
 
     def draw_background(self):
-        if self.game.player.map_pos[0] > 6:
-            self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
+        self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
+        if self.game.player.map_pos[0] < 7 and self.game.player.map_pos[1] > 12:
             self.screen.blit(self.roof_image, (-self.sky_offset, 0))
-            self.screen.blit(self.roof_image, (-self.sky_offset + Largeur, 0))
+            pygame.draw.rect(self.screen, roof_color_backroom, (0, 0, Largeur, Longueur))
+            self.screen.blit(self.roof_image, (0, Moitié_longueur))
+        if 12 < self.game.player.map_pos[0] < 27 and self.game.player.map_pos[1] > 22:
+            pygame.draw.rect(self.screen, roof_color_wolfenstein, (0, 0, Largeur, Longueur))
+            pygame.draw.rect(self.screen, floor_color_wolfenstein, (0, Moitié_longueur, Largeur, Longueur))
         else:
-            self.sky_offset = (self.sky_offset + 4.5 * self.game.player.rel) % Largeur
             self.screen.blit(self.sky_image, (-self.sky_offset, 0))
             self.screen.blit(self.sky_image, (-self.sky_offset + Largeur, 0))
+            pygame.draw.rect(self.screen, floor_color, (0, Moitié_longueur, Largeur, Longueur))
 
 
-        pygame.draw.rect(self.screen, floor_color, (0, Moitié_longueur, Largeur, Longueur))
+
     def render_game_objects(self):
         list_objects = sorted(self.game.raycasting.objects_to_render, key=lambda t: t[0], reverse = True)
         for depth, image, pos in list_objects:
@@ -66,5 +70,9 @@ class ObjectRenderer:
             3: self.get_texture('Texture/Doom/3.png'),
             4: self.get_texture('Texture/Doom/4.png'),
             5: self.get_texture('Texture/Doom/5.png'),
-            6: self.get_texture('Texture/Backrooms/1.jpg')
+            6: self.get_texture('Texture/Backrooms/1.jpg'),
+            7: self.get_texture('Texture/Wolfenstein/1.png'),
+            8: self.get_texture('Texture/Wolfenstein/2.png'),
+            9: self.get_texture('Texture/Wolfenstein/3.png'),
+            10: self.get_texture('Texture/Wolfenstein/4.png'),
         }

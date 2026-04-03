@@ -19,6 +19,9 @@ mouse_border_left = 100
 mouse_border_right = Largeur - mouse_border_left
 
 floor_color = (30, 30, 30)
+roof_color_backroom = (115, 98, 11)
+roof_color_wolfenstein = (54, 53, 52)
+floor_color_wolfenstein = (117, 116, 115)
 
 FOV = math.pi /3
 Moitie_FOV = FOV /2
