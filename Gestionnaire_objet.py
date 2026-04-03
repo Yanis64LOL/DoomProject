@@ -8,9 +8,12 @@ class ObjectHandler:
         self.sprite_list = []
         self.npc_list = []
         self.items_list = []
-        self.npc_sprite_path = 'Sprites/Npc/'
-        self.static_sprite_path = 'Sprites/Static_sprites/'
-        self.anim_sprite_path = 'Sprites/animated_sprites/'
+        self.npc_sprite_path_doom = 'Sprites/Doom/Npc/'
+        self.static_sprite_path_doom = 'Sprites/Doom/Static_sprites/'
+        self.anim_sprite_path_doom = 'Sprites/Doom/animated_sprites/'
+        self.npc_sprite_path_wolfenstein = 'Sprites/Wolfenstein/Npc/'
+        self.static_sprite_path_wolfenstein = 'Sprites/Wolfenstein/Static_sprites/'
+        self.anim_sprite_path_wolfenstein = 'Sprites/Wolfenstein/animated_sprites/'
         add_sprite = self.add_sprite
         add_npc = self.add_npc
         add_items = self.add_items
@@ -18,6 +21,7 @@ class ObjectHandler:
 
 
         #add_items(Items_Heal(game))
+        #add_sprite(SpriteObject(game, path=self.static_sprite_path_wolfenstein + 'Tonneau.png', pos=(10, 5)))
         #add_sprite(AnimatedSprite(game))
         #add_sprite(AnimatedSprite(game, pos=(1.5, 1.5)))
         #add_sprite(AnimatedSprite(game, pos=(1.5, 7.5)))

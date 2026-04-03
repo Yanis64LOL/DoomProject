@@ -72,7 +72,6 @@ class Game():
 
     def run(self):
         while True:
-            print(self.player.map_pos)
             self.check_events()
             self.update()
             self.draw()

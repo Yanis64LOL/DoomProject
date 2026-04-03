@@ -28,7 +28,7 @@ Moitie_FOV = FOV /2
 nb_ray = Largeur//2
 Moitie_nb_rays = nb_ray//2
 delta_angle = FOV / nb_ray
-Max_depth = 20
+Max_depth = 15
 
 screen_dist = Moitié_largeur /math.tan(Moitie_FOV)
 scale = Largeur // nb_ray
