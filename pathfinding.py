@@ -26,7 +26,7 @@ class PathFinding:
             cur_node = queue.popleft()
             if cur_node == goal:
                 break
-            next_nodes = graph[cur_node]
+            next_nodes = graph.get(cur_node, [])
 
             for next_node in next_nodes:
                 if next_node not in visited and next_node not  in self.game.object_handler.npc_position:
@@ -37,7 +37,16 @@ class PathFinding:
 
 
     def get_next_nodes(self, x, y):
-        return [(x + dx, y + dy) for dx, dy in self.ways if (x +dx, y +dy) not in self.game.map.world_map]
+        nodes = []
+        for dx, dy in self.ways:
+            nx, ny = x + dx, y + dy
+
+            # Vérifier limites de la map
+            if 0 <= nx < len(self.map[0]) and 0 <= ny < len(self.map):
+                if (nx, ny) not in self.game.map.world_map:
+                    nodes.append((nx, ny))
+
+        return nodes
 
     def get_graph(self):
         for y, row in enumerate(self.map):

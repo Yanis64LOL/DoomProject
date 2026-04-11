@@ -51,8 +51,8 @@ class Game():
         self.screen.fill('black')
 
         self.object_renderer.draw()
-        #self.map.draw()
-        #self.player.draw()
+        self.map.draw()
+        self.player.draw()
         self.weapon.draw()
 
     def check_events(self):
@@ -72,6 +72,7 @@ class Game():
 
     def run(self):
         while True:
+
             self.check_events()
             self.update()
             self.draw()

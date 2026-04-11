@@ -9,7 +9,9 @@ class Menu():
         self.game = game
         self.screen = game.screen
         self.logo = pygame.image.load("Menu/Doom_Logo.png").convert_alpha()
-        self.rect = self.logo.get_rect(center=(Moitié_largeur, Moitié_longueur - 250))
+        self.title_screen = pygame.image.load('Menu/menu_bg/doom_bg.png').convert_alpha()
+        self.rect_logo = self.logo.get_rect(center=(Moitié_largeur, Moitié_longueur - 250))
+        self.rect_title_screen = self.title_screen.get_rect()
         self.button_play = Button_Play()
 
 
@@ -31,8 +33,8 @@ class Menu():
 
 
     def main_menu(self):
-        self.screen.fill("red")
-        self.screen.blit(self.logo, self.rect)
+        self.screen.blit(self.title_screen, self.rect_title_screen)
+        self.screen.blit(self.logo, self.rect_logo)
         self.button_play.update(self.screen)
         pygame.display.flip()
         self.game.clock.tick(60)

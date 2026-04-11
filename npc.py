@@ -45,7 +45,7 @@ class NPC(AnimatedSprite):
         next_x, next_y = next_pos
 
         if next_pos not in self.game.object_handler.npc_position:
-            #pygame.draw.rect(self.game.screen, 'blue', (100* next_x, 100* next_y, 100, 100))
+            pygame.draw.rect(self.game.screen, 'blue', (100* next_x, 100* next_y, 100, 100))
             angle = math.atan2(next_y + 0.5 - self.y, next_x + 0.5 - self.x)
             dx = math.cos(angle) * self.speed
             dy = math.sin(angle) * self.speed
@@ -182,12 +182,12 @@ class NPC(AnimatedSprite):
 
 
 class SoldierNPC(NPC):
-    def __init__(self, game, path='Sprites/Npc/Soldier/0.png', pos=(10.5, 5.5), scale=0.6,
+    def __init__(self, game, path='Sprites/Doom/Npc/Soldier/0.png', pos=(2, 2), scale=0.6,
                  shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
 
 class Demon(NPC):
-    def __init__(self, game, path='Sprites/Npc/Demon/0.png', pos=(10.5, 6.5), scale=0.7,
+    def __init__(self, game, path='Sprites/Doom/Npc/Demon/0.png', pos=(10.5, 6.5), scale=0.7,
                  shift=0.27, animation_time=250):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 1
@@ -197,7 +197,7 @@ class Demon(NPC):
         self.accuracy = 0.35
 
 class Boss(NPC):
-    def __init__(self, game, path='Sprites/Npc/Boss/0.png', pos=(10.5, 6.5), scale=0.7,
+    def __init__(self, game, path='Sprites/Doom/Npc/Boss/0.png', pos=(10.5, 6.5), scale=0.7,
                  shift=0.27, animation_time=250):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 6

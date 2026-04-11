@@ -68,7 +68,7 @@ class Player:
         if self.joystick:
             axis_left_joystick_x = self.joystick.get_axis(0)
             axis_left_joystick_y = self.joystick.get_axis(1)
-            axis_right_joystick_x = self.joystick.get_axis(2)
+            axis_right_joystick_x = self.joystick.get_axis(3)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_z] or axis_left_joystick_y < -0.5:

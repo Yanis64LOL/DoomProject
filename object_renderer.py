@@ -43,7 +43,7 @@ class ObjectRenderer:
             self.screen.blit(self.roof_image, (-self.sky_offset, 0))
             pygame.draw.rect(self.screen, roof_color_backroom, (0, 0, Largeur, Longueur))
             self.screen.blit(self.roof_image, (0, Moitié_longueur))
-        if 12 < self.game.player.map_pos[0] < 27 and self.game.player.map_pos[1] > 22:
+        elif 12 < self.game.player.map_pos[0] < 27 and self.game.player.map_pos[1] > 22:
             pygame.draw.rect(self.screen, roof_color_wolfenstein, (0, 0, Largeur, Longueur))
             pygame.draw.rect(self.screen, floor_color_wolfenstein, (0, Moitié_longueur, Largeur, Longueur))
         else:
